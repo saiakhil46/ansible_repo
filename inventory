@@ -8,6 +8,9 @@ localhost
 [db_servers]
 10.128.0.55
 
+[workstations]
+localhost
+
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
 ansible_ssh_user=deployer
