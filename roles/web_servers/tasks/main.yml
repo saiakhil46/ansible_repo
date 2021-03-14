@@ -1,29 +1,17 @@
-- name: install apache2 and php package (Ubuntu)
-  tags: apache,apache2,ubuntu
-  apt: 
+- name: install apache and php package
+  tags: apache,httpd,php
+  package: 
     name: 
-      - apache2
-      - libapache2-mod-php  
+      - "{{ apache_package_name }}"
+      - "{{ php_package_name }}"
     state: latest
-  when: ansible_distribution == "Ubuntu"   
-
-- name: install httpd and php package (CentOS)
-  tags: apache,centos,httpd
-  dnf:
-    name: 
-      - httpd
-      - php  
-    state: latest
-    update_cache: yes
-  when: ansible_distribution == "CentOS"
   
 - name: start httpd (CentOS)
-  tags: apache,centos,httpd
+  tags: apache,httpd
   service: 
-    name: httpd
+    name: "{{ apache_service }}"
     state: started
     enabled: yes
-  when: ansible_distribution == "CentOS"  
    
 - name: change emain address for admin 
   tags: centos,apache,httpd
@@ -31,15 +19,8 @@
     path: /etc/httpd/conf/httpd.conf
     regexp: '^ServerAdmin'
     line: ServerAdmin somebody@somewhere.net
-  when: ansible_distribution == "CentOS"
-  register: httpd
-
-- name: restart httpd (CentOS)
-  tags: centos,apache,httpd
-  service: 
-    name: httpd
-    state: restarted
-  when: httpd.changed    
+  when: ansible_distribution == "CentOS"  
+  notify: restart_apache
 
 - name: copy default html file for site
   tags: apache,apache2,httpd
