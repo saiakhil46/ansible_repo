@@ -1,0 +1,5 @@
+- name: add ssh key to gudimetla user
+  tags: always
+  authorized_key: 
+    user: gudimetla
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfjC+ZB+UyNAP7bXJAHAXxknF7CRZBQeJmOrCbSGA6fx6PSfv9yWtBrLxdyYD07t53xjSsbJFp5jB/ia20rlYScp2rsdpY+2QuWnRbs36PEom9ddXgmYTRXuAximyt5zJucNWh2CSI+qCGPGMPTfQirGjY8j6iCKD4hQLt3kpnLE5Ilov+G18G0MQeuLNfijriohItNc79oMiKhe2oCIPWc02Hb+yk9BTweRhpjcadFaS+YyHyfqdFByJ1luk/V65OKTXnr6Ss9wTDy8A6A/2S7078A3RPKoE7ovFgT40dhycni7BkP0+JE9Ab830eQC4XEbI/5QKZM+mTQkptFdKz deployer@ansible-control-node"
